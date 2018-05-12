@@ -62,6 +62,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(IncludePath);$(ISenseIncludePath);$(ProjectDir)\include</IncludePath>
+    <RemoteCCompileToolExe />
+    <RemoteCppCompileToolExe>clang++</RemoteCppCompileToolExe>
+    <RemoteLdToolExe>clang++</RemoteLdToolExe>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -69,7 +72,22 @@
   <ItemGroup>
     <ClInclude Include="symbols.hh" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <CAdditionalWarning />
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <CppAdditionalWarning />
+      <AdditionalOptions>-I ~/Repositories/silicon/party/include -fPIC %(AdditionalOptions)</AdditionalOptions>
+      <ObjectFileName>webapi.o</ObjectFileName>
+      <CppLanguageStandard>c++1y</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>-lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
