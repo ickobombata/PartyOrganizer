@@ -6,6 +6,7 @@ http://siliconframework.org
 ## 1. VM Setup
 * Install VMWare workstation
 * Install Ubuntu 18.04 
+* Change your VM network type to *Bridged* so its address can be accessed from the windows machine
 * (Optional) Setup uni-sofia.bg apt-get mirrors - http://ubuntu.uni-sofia.bg/ubuntu/
 
 ## 2. Prequisities setup
