@@ -49,7 +49,7 @@ using namespace s; // Symbols namespace
 auto hello_api = http_api(
 
 	// The hello world procedure.
-	GET / _hello = []() { return D(_message = "Hello world."); },
+	GET / _hello = []() { return D(_message = "Hello world."); }
 );
 
 int main()
