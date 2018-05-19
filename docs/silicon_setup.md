@@ -10,6 +10,9 @@ http://siliconframework.org
 * (Optional) Setup uni-sofia.bg apt-get mirrors - http://ubuntu.uni-sofia.bg/ubuntu/
 
 ## 2. Prequisities setup
+* install git
+```sudo apt install git```
+
 * clone silicon
 
 ```git clone https://github.com/matt-42/silicon.git```
