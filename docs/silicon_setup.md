@@ -71,4 +71,4 @@ int main()
 
 ```./test.out```
 * open http://localhost:12345/hello
-* you should see a ```Hello world!``` message
+* you should see ```{"message":"Hello world."}```
