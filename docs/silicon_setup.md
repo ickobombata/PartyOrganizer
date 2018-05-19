@@ -11,8 +11,8 @@ http://siliconframework.org
 
 ## 2. Prequisities setup
 * install git
-```sudo apt install git```
 
+```sudo apt install git```
 * clone silicon
 
 ```git clone https://github.com/matt-42/silicon.git```
