@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <CppAdditionalWarning />
-      <AdditionalOptions>-I ~/Repositories/silicon/party/include -fPIC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-I ~/include/silicon -fPIC %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName>webapi.o</ObjectFileName>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
