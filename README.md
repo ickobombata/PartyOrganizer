@@ -1,4 +1,7 @@
-# PartyOrganizer
+# PartyOrganizer 
+
+[![Build status](https://ci.appveyor.com/api/projects/status/t8pifsqu6hfuwhqp?svg=true)](https://ci.appveyor.com/project/betrakiss/partyorganizer)
+
 # Project Title
 
 Project for organizing parties in some time and arbitrary place.
