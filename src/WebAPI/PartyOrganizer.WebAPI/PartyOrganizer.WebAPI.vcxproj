@@ -68,8 +68,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Services\TokenService.h" />
     <ClInclude Include="symbols.hh" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -81,7 +83,6 @@
     <ClCompile>
       <CppAdditionalWarning />
       <AdditionalOptions>-I ~/include/silicon -I ~/include/jwt -fPIC %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName>webapi.o</ObjectFileName>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
