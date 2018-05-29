@@ -1,19 +1,15 @@
 #include "TokenService.h"
 
-#include <jwt/jwt_all.h>
 #include <chrono>
 
-TokenService::TokenService(const char* secret)
+TokenService::TokenService(const char* secret) : signer(secret)
 {
-	strcpy(this->secret, secret);
+
 }
 
 std::string TokenService::GenerateToken(const std::string& username, const std::string& password)
 {
 	using json = nlohmann::json;
-
-	// Setup a signer
-	HS256Validator signer(secret);
 
 	std::chrono::nanoseconds now = std::chrono::system_clock::now().time_since_epoch();
 	now += std::chrono::hours(1);
@@ -26,4 +22,21 @@ std::string TokenService::GenerateToken(const std::string& username, const std::
 
 	printf("Token %s\n", token.c_str());
 	return token;
+}
+
+bool TokenService::IsValid(const std::string& token)
+{
+	try
+	{
+
+		ExpValidator exp;
+		json header, payload;
+
+		std::tie(header, payload) = JWT::Decode(token, &signer, &exp);
+		return true;
+	}
+	catch (InvalidTokenError& ex)
+	{
+		return false;
+	}
 }

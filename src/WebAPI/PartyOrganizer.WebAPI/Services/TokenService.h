@@ -1,18 +1,17 @@
 #pragma once
 
 #include <string>
+#include <jwt/jwt_all.h>
 
 class TokenService
 {
-private:
-	static const int SECRET_LENGTH = 64;
-
 public:
 	TokenService(const char *);
 
 public:
 	std::string GenerateToken(const std::string &, const std::string &);
+	bool IsValid(const std::string &);
 
 private:
-	char secret[SECRET_LENGTH];
+	HS256Validator signer;
 };
