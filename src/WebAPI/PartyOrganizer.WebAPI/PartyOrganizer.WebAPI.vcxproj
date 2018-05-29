@@ -80,13 +80,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <CppAdditionalWarning />
-      <AdditionalOptions>-I ~/include/silicon -fPIC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-I ~/include/silicon -I ~/include/jwt -fPIC %(AdditionalOptions)</AdditionalOptions>
       <ObjectFileName>webapi.o</ObjectFileName>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalOptions>-lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lcrypto -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
+      <LibraryDependencies>jwtd</LibraryDependencies>
     </Link>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>libs/libjwtd.a</AdditionalSourcesToCopyMapping>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
