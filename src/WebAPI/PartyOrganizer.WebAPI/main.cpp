@@ -4,6 +4,8 @@
 #include <cstdio>
 #include <jwt/jwt_all.h>
 
+std::string GenerateToken(const std::string& username, const std::string& password);
+
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
 
@@ -11,10 +13,15 @@ using namespace s; // Symbols namespace
 auto hello_api = http_api(
 
 	// The hello world procedure.
-	GET / _hello = []() { return D(_message = "Hello world."); }
+	GET / _hello = []() { return D(_message = "Hello world."); },
+	POST / _token * post_parameters(_username, _password)
+	= [](auto params) 
+		{
+			return D(_token = GenerateToken(params.username, params.password));
+		}
 );
 
-void GenerateToken(const std::string& username, const std::string& password)
+std::string GenerateToken(const std::string& username, const std::string& password)
 {
 	using json = nlohmann::json;
 
@@ -25,9 +32,10 @@ void GenerateToken(const std::string& username, const std::string& password)
 	json payload = { { "sub", "subject" },{ "exp", 1483228800 } };
 
 	// Let's encode the token to a string
-	auto token = JWT::Encode(signer, payload);
+	std::string token = JWT::Encode(signer, payload);
 
 	printf("Token %s\n", token.c_str());
+	return token;
 }
 
 int main()

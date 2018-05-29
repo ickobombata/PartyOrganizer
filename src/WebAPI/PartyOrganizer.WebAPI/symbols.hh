@@ -9,3 +9,19 @@
 #define IOD_SYMBOL_message
     iod_define_symbol(message)
 #endif
+
+#ifndef IOD_SYMBOL_password
+#define IOD_SYMBOL_password
+    iod_define_symbol(password)
+#endif
+
+#ifndef IOD_SYMBOL_token
+#define IOD_SYMBOL_token
+    iod_define_symbol(token)
+#endif
+
+#ifndef IOD_SYMBOL_username
+#define IOD_SYMBOL_username
+    iod_define_symbol(username)
+#endif
+
