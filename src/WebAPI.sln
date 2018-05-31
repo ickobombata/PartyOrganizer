@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PartyOrganizer.WebAPI", "WebAPI\PartyOrganizer.WebAPI\PartyOrganizer.WebAPI.vcxproj", "{4F7CBA4B-2C5E-4904-BFC1-65E1E6798DCD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IoDGenerateSymbols", "Tools\IoDGenerateSymbols\IoDGenerateSymbols.vcxproj", "{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{725DF163-725E-4D1D-848A-25BDE867C0E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -27,9 +31,22 @@ Global
 		{4F7CBA4B-2C5E-4904-BFC1-65E1E6798DCD}.Release|x64.Build.0 = Release|x64
 		{4F7CBA4B-2C5E-4904-BFC1-65E1E6798DCD}.Release|x86.ActiveCfg = Release|x86
 		{4F7CBA4B-2C5E-4904-BFC1-65E1E6798DCD}.Release|x86.Build.0 = Release|x86
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Debug|ARM.ActiveCfg = Debug|Win32
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Debug|x64.ActiveCfg = Debug|x64
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Debug|x64.Build.0 = Debug|x64
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Debug|x86.ActiveCfg = Debug|Win32
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Debug|x86.Build.0 = Debug|Win32
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Release|ARM.ActiveCfg = Release|Win32
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Release|x64.ActiveCfg = Release|x64
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Release|x64.Build.0 = Release|x64
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Release|x86.ActiveCfg = Release|Win32
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E5E667E-A25C-4FCB-A1EC-B4E86CDA5349} = {725DF163-725E-4D1D-848A-25BDE867C0E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8D96E148-7BF4-4066-A596-EEA06E5A5A5C}
