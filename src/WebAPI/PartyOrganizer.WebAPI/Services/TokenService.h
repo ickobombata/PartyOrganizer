@@ -10,7 +10,7 @@ public:
 
 public:
 	std::string GenerateToken(const std::string &, const std::string &);
-	bool IsValid(const std::string &);
+	bool ValidateToken(const std::string &);
 
 private:
 	HS256Validator signer;

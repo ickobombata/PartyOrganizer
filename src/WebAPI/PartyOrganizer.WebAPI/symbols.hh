@@ -25,3 +25,13 @@
     iod_define_symbol(username)
 #endif
 
+#ifndef IOD_SYMBOL_valid
+#define IOD_SYMBOL_valid
+    iod_define_symbol(valid)
+#endif
+
+#ifndef IOD_SYMBOL_validate
+#define IOD_SYMBOL_validate
+    iod_define_symbol(validate)
+#endif
+

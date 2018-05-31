@@ -24,11 +24,10 @@ std::string TokenService::GenerateToken(const std::string& username, const std::
 	return token;
 }
 
-bool TokenService::IsValid(const std::string& token)
+bool TokenService::ValidateToken(const std::string& token)
 {
 	try
 	{
-
 		ExpValidator exp;
 		json header, payload;
 
