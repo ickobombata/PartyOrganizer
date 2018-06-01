@@ -4,6 +4,9 @@
 #include "symbols.hh"
 #include <cstdio>
 
+#include "Services/TokenService.h"
+
+TokenService tokenService("ubersecret");
 
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
@@ -26,7 +29,14 @@ auto hello_api = http_api(
 		db("SELECT username from users where alias = ?")("Due") >> name;
 		return D(_username = name);
 	}
+
+	POST / _token / _generate * post_parameters(_username, _password)
+		= [](auto params) { return D(_token = tokenService.GenerateToken(params.username, params.password)); },
+
+	POST / _token / _validate * post_parameters(_token)
+		= [](auto params) { return D(_valid = tokenService.ValidateToken(params.token)); }
 );
+
 
 int main()
 {

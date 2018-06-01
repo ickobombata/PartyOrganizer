@@ -1,7 +1,8 @@
+// this should not be needed
 sudo apt-get install libmysqlcppconn-dev
 
-copy /usr/include/cppconn to ~/include/silicon
 
+// start from here
 sudo apt-get install mysql-client
 sudo apt-get install mysql-server
 
@@ -27,8 +28,12 @@ mysql> INSERT INTO users VALUES
 		("ice", "!11", "Icyy"),
 		("mob", "uno", "Due");
 
+// this is not supposed to be needed
+// if it works without this, please update the doc.
 add -lmysqlcppconn to linker additional options
 
 ------------------------------------------------------------
 
 sudo apt-get install libmysqlclient-dev
+
+Add -lmysqlclient to the linker

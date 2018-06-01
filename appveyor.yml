@@ -1,0 +1,7 @@
+version: 1.0.{build}
+image: Ubuntu
+init:
+- sh: sudo apt-get install -y libmicrohttpd-dev clang libboost-all-dev
+install:
+- sh: clang++ -std=c++14 ./src/WebAPI/PartyOrganizer.WebAPI/*.cpp -I ./src/WebAPI/PartyOrganizer.WebAPI/include -lmicrohttpd
+build: off

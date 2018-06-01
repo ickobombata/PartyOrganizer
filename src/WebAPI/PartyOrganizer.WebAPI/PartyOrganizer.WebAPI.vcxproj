@@ -65,33 +65,17 @@
     <RemoteCCompileToolExe />
     <RemoteCppCompileToolExe>clang++</RemoteCppCompileToolExe>
     <RemoteLdToolExe>clang++</RemoteLdToolExe>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <RemoteCCompileToolExe>clang++</RemoteCCompileToolExe>
-    <RemoteCppCompileToolExe>clang++</RemoteCppCompileToolExe>
-    <RemoteLdToolExe>clang++</RemoteLdToolExe>
-    <IncludePath>$(ProjectDir)\include;$(IncludePath)</IncludePath>
+    <CustomBuildAfterTargets>
+    </CustomBuildAfterTargets>
+    <CustomBuildBeforeTargets>
+    </CustomBuildBeforeTargets>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\cppconn\build_config.h" />
-    <ClInclude Include="include\cppconn\config.h" />
-    <ClInclude Include="include\cppconn\connection.h" />
-    <ClInclude Include="include\cppconn\datatype.h" />
-    <ClInclude Include="include\cppconn\driver.h" />
-    <ClInclude Include="include\cppconn\exception.h" />
-    <ClInclude Include="include\cppconn\metadata.h" />
-    <ClInclude Include="include\cppconn\parameter_metadata.h" />
-    <ClInclude Include="include\cppconn\prepared_statement.h" />
-    <ClInclude Include="include\cppconn\resultset.h" />
-    <ClInclude Include="include\cppconn\resultset_metadata.h" />
-    <ClInclude Include="include\cppconn\sqlstring.h" />
-    <ClInclude Include="include\cppconn\statement.h" />
-    <ClInclude Include="include\cppconn\variant.h" />
-    <ClInclude Include="include\cppconn\version_info.h" />
-    <ClInclude Include="include\cppconn\warning.h" />
+    <ClInclude Include="Services\TokenService.h" />
     <ClInclude Include="symbols.hh" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -102,24 +86,43 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <CppAdditionalWarning />
-      <AdditionalOptions>-I ~/include/silicon -fPIC %(AdditionalOptions)</AdditionalOptions>
-      <ObjectFileName>webapi.o</ObjectFileName>
+      <AdditionalOptions>-I ~/include/silicon -I ~/include/jwt -fPIC %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalOptions>-lmicrohttpd -lmysqlclient %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lmysqlclient -lcrypto -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
+      <LibraryDependencies>jwtd</LibraryDependencies>
     </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <ClCompile>
-      <ObjectFileName>output.o</ObjectFileName>
-      <CLanguageStandard>C14 (-std=c14)</CLanguageStandard>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalOptions>-fPIC -I ~/include/silicon %(AdditionalOptions)</AdditionalOptions>
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>-lmicrohttpd</AdditionalOptions>
-    </Link>
+    <PreBuildEvent>
+      <AdditionalSourcesToCopyMapping>libs/libjwtd.a</AdditionalSourcesToCopyMapping>
+      <Command>"../../x64/Debug/IoDGenerateSymbols" main.cpp symbols.hh</Command>
+    </PreBuildEvent>
+    <RemotePreBuildEvent>
+      <Command>
+      </Command>
+    </RemotePreBuildEvent>
+    <RemotePreBuildEvent>
+      <AdditionalSourcesToCopyMapping>
+      </AdditionalSourcesToCopyMapping>
+    </RemotePreBuildEvent>
+    <RemotePostBuildEvent>
+      <AdditionalSourcesToCopyMapping>
+      </AdditionalSourcesToCopyMapping>
+    </RemotePostBuildEvent>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+    </CustomBuildStep>
+    <RemotePreLinkEvent>
+      <Command>
+      </Command>
+    </RemotePreLinkEvent>
+    <RemotePreLinkEvent>
+      <AdditionalSourcesToCopyMapping>
+      </AdditionalSourcesToCopyMapping>
+    </RemotePreLinkEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
