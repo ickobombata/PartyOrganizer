@@ -28,7 +28,7 @@ auto hello_api = http_api(
 		std::string name;
 		db("SELECT username from users where alias = ?")("Due") >> name;
 		return D(_username = name);
-	}
+	},
 
 	POST / _token / _generate * post_parameters(_username, _password)
 		= [](auto params) { return D(_token = tokenService.GenerateToken(params.username, params.password)); },
