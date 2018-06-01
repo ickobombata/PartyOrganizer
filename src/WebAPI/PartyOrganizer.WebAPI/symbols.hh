@@ -7,5 +7,20 @@
 
 #ifndef IOD_SYMBOL_message
 #define IOD_SYMBOL_message
-    iod_define_symbol(message)
+		iod_define_symbol(message)
+#endif
+
+#ifndef IOD_SYMBOL_username
+#define IOD_SYMBOL_username
+		iod_define_symbol(username)
+#endif
+
+#ifndef IOD_SYMBOL_alias
+#define IOD_SYMBOL_alias
+		iod_define_symbol(alias)
+#endif
+
+#ifndef IOD_SYMBOL_user_password
+#define IOD_SYMBOL_user_password
+		iod_define_symbol(user_password)
 #endif
