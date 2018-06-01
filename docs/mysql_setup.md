@@ -1,18 +1,21 @@
+# MySQL environment setup
 
+* Install packages
 ```sudo apt-get install mysql-client libmysqlclient-dev mysql-server```
 
-once installed:
+* Once installed:
 ```sudo mysql```
 
-inside of the mysql console:
+Inside of the mysql console:
 
-Create user with privileges
+* Create user with privileges
 ```
 mysql> CREATE USER 'kurendo'@'localhost' IDENTIFIED BY 'kurendo';
 mysql> GRANT ALL PRIVILEGES ON * . * TO 'kurendo'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
-Create database and tables (copy paste won't work, please copy line by line):
+
+* Create database and tables (copy paste won't work, please copy line by line):
 
 ```mysql> CREATE DATABASE party_organizer;
 mysql> USE party_organizer;
@@ -27,9 +30,5 @@ mysql> INSERT INTO users VALUES
 		("ice", "!11", "Icyy"),
 		("mob", "uno", "Due");
 ```
+* Add ```-lmysqlclient``` to the linker
 
-// this is not supposed to be needed
-// if it works without this, please update the doc.
-```add -lmysqlcppconn to linker additional options```
-
-Add ```-lmysqlclient``` to the linker
