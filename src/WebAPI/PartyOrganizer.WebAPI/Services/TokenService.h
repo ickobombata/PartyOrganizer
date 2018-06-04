@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <jwt/jwt_all.h>
+#include <jwt/jwt.hpp>
 
 class TokenService
 {
@@ -13,5 +13,5 @@ public:
 	bool ValidateToken(const std::string &);
 
 private:
-	HS256Validator signer;
+	char signingSecret[64];
 };
