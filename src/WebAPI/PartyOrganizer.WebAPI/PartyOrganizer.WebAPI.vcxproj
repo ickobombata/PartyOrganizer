@@ -90,11 +90,11 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lmysqlclient -lcrypto -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>jwtd</LibraryDependencies>
+      <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lmysqlclient -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
+      <LibraryDependencies>jwtd;:libcrypto.so.1.1</LibraryDependencies>
     </Link>
     <PreBuildEvent>
-      <AdditionalSourcesToCopyMapping>libs/libjwtd.a</AdditionalSourcesToCopyMapping>
+      <AdditionalSourcesToCopyMapping>libs/libjwtd.a;libs/libcrypto.so.1.1</AdditionalSourcesToCopyMapping>
       <Command>"../../x64/Debug/IoDGenerateSymbols" main.cpp symbols.hh</Command>
     </PreBuildEvent>
     <RemotePreBuildEvent>
