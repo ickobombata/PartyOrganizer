@@ -1,7 +1,6 @@
 version: 1.0.{build}
 image: Ubuntu
-init:
-- sh: sudo apt-get install -y libmicrohttpd-dev clang libboost-all-dev
-install:
-- sh: clang++ -std=c++14 ./src/WebAPI/PartyOrganizer.WebAPI/*.cpp -I ./src/WebAPI/PartyOrganizer.WebAPI/include -lmicrohttpd
-build: off
+build_script:
+- sh: >-
+    sudo apt install -y libmicrohttpd-dev clang libboost-all-dev libmysqlclient-dev libssl-dev
+    clang++ -std=c++14 ./src/WebAPI/PartyOrganizer.WebAPI/*.cpp ./src/WebAPI/PartyOrganizer.WebAPI/Services/*.cpp -I ./src/WebAPI/PartyOrganizer.WebAPI/include -L ./src/WebAPI/PartyOrganizer.WebAPI/libs -lmicrohttpd -lmysqlclient -lcrypto
