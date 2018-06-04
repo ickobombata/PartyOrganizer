@@ -2,8 +2,8 @@
 
 https://github.com/pokowaka/jwt-cpp
 
-* The library is built on Ubuntu 18.04 and is located in the [libs](src/WebAPI/PartyOrganizer.WebAPI/libs) folder of the project.
-* To get it running, copy the **jwt** and **private** folders from the [include](src/WebAPI/PartyOrganizer.WebAPI/include) folder to ~/include on the remote linux machine.
+* The library is built on Ubuntu 18.04 and is located in the [libs](https://github.com/ickobombata/PartyOrganizer/tree/master/src/WebAPI/PartyOrganizer.WebAPI/libs) folder of the project.
+* To get it running, copy the **jwt** and **private** folders from the [include](https://github.com/ickobombata/PartyOrganizer/tree/master/src/WebAPI/PartyOrganizer.WebAPI/include) folder to ~/include/jwt on the remote linux machine.
 * Visual Studio project settings are already adjusted to include the library to the project.
 
 ### Follow the instructions below **ONLY** if you need to rebuild it.
