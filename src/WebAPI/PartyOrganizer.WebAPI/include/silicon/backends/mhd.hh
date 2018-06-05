@@ -213,6 +213,8 @@ namespace sl
             decode_post_parameters_urlencoded<post_t>(res, r);
           else if (encoding == std::string("application/json"))
             decode_post_parameters_json<post_t>(res, r);
+		  else if (encoding == std::string("application/json; charset=utf-8"))
+			  decode_post_parameters_json<post_t>(res, r);
           else
             throw error::bad_request(std::string("Content-Type not implemented: ") + encoding);
         }
