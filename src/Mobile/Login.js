@@ -24,23 +24,16 @@ export default class Login extends Component {
             password: this.state.password
         };
         
-        console.log(JSON.stringify(params))
         fetch('http://192.168.0.104:12345/token/generate', {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: '{"username": "angie","password": "1234"}'
+            body: JSON.stringify(params)
         })
-        .then((response) => response.json())
+        .then((response) => response.json() )
         .then((response) => {
             console.log(response)
-          if (response.error) this.setState({message: response.message});
-          else proceed = true;
-
-        })
-        .then(() => {
           this.setState({isLoggingIn: false})
           if (proceed) this.props.onLoginPress();
         })
