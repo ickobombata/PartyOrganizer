@@ -1,5 +1,8 @@
 # jwt-cpp setup
 
+
+## To be fixed, other library is used now
+
 https://github.com/pokowaka/jwt-cpp
 
 * The library is built on Ubuntu 18.04 and is located in the [libs](https://github.com/ickobombata/PartyOrganizer/tree/master/src/WebAPI/PartyOrganizer.WebAPI/libs) folder of the project.
