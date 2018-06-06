@@ -5,9 +5,14 @@
     iod_define_symbol(alias)
 #endif
 
-#ifndef IOD_SYMBOL_auto_increment
-#define IOD_SYMBOL_auto_increment
-    iod_define_symbol(auto_increment)
+#ifndef IOD_SYMBOL_create_user
+#define IOD_SYMBOL_create_user
+    iod_define_symbol(create_user)
+#endif
+
+#ifndef IOD_SYMBOL_delete_user
+#define IOD_SYMBOL_delete_user
+    iod_define_symbol(delete_user)
 #endif
 
 #ifndef IOD_SYMBOL_generate
@@ -43,6 +48,11 @@
 #ifndef IOD_SYMBOL_token
 #define IOD_SYMBOL_token
     iod_define_symbol(token)
+#endif
+
+#ifndef IOD_SYMBOL_update_user
+#define IOD_SYMBOL_update_user
+    iod_define_symbol(update_user)
 #endif
 
 #ifndef IOD_SYMBOL_user_password
