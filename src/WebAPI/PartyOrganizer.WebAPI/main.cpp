@@ -105,7 +105,10 @@ auto hello_api = http_api(
 
 void InitializeServices()
 {
-	std::shared_ptr<LoggingService> loggingService = std::make_shared<LoggingService>("log.txt");
+	std::shared_ptr<LoggingService> loggingService = std::make_shared<LoggingService>();
+	loggingService->RegisterLogFile("WebAPI", "log.txt");
+	loggingService->RegisterConsole("Console");
+	
 	ServiceProvider::Instance().Register(loggingService);
 }
 
