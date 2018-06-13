@@ -75,7 +75,8 @@
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Services\LoggingService.h" />
+    <ClInclude Include="Services\LoggingService.hpp" />
+    <ClInclude Include="Services\ServiceProvider.hpp" />
     <ClInclude Include="Services\TokenService.h" />
     <ClInclude Include="symbols.hh" />
   </ItemGroup>

@@ -6,7 +6,8 @@
 #include <cstdio>
 
 #include "Services/TokenService.h"
-#include "Services/LoggingService.h"
+#include "Services/LoggingService.hpp"
+#include "Services/ServiceProvider.hpp"
 
 TokenService tokenService("ubersecret");
 
@@ -102,16 +103,21 @@ auto hello_api = http_api(
 		= [](auto params) { return D(_valid = tokenService.ValidateToken(params.token)); }
 );
 
+void InitializeServices()
+{
+	std::shared_ptr<LoggingService> loggingService = std::make_shared<LoggingService>("log.txt");
+	ServiceProvider::Instance().Register(loggingService);
+}
+
 int main()
 {
 	setbuf(stdout, NULL);
 	
-	LoggingService logger("log.txt");
+	InitializeServices();
 
-	logger.Info("Starting server...");
-	logger.Info("[{}] Starting server...", "Web API");
-	logger.Info("[{}] Starting server... {}", "Web API", "Started");
-		printf("Starting server...");
+	std::shared_ptr<LoggingService> logger = ServiceProvider::Instance().Resolve<LoggingService>();
+
+	logger->Info("Starting server...");
 
 		auto middlewares = std::make_tuple(
 			mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),

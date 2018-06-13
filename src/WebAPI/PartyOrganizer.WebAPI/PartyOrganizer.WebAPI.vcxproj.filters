@@ -11,7 +11,10 @@
     <ClInclude Include="Services\TokenService.h">
       <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="Services\LoggingService.h">
+    <ClInclude Include="Services\LoggingService.hpp">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ServiceProvider.hpp">
       <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
