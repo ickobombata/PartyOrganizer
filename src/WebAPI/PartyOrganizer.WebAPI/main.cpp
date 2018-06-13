@@ -10,8 +10,6 @@
 #include "Services/ServiceProvider.hpp"
 #include "Services/ConfigurationService.h"
 
-TokenService tokenService("ubersecret");
-
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
 
@@ -98,10 +96,18 @@ auto hello_api = http_api(
 	},
 
 	POST / _token / _generate * post_parameters(_username, _password)
-		= [](auto params) { return D(_token = tokenService.GenerateToken(params.username, params.password)); },
+		= [](auto params)
+	{
+		auto tokenService = ServiceProvider::Instance().Resolve<TokenService>();
+		return D(_token = tokenService->GenerateToken(params.username, params.password));
+	},
 
 	POST / _token / _validate * post_parameters(_token)
-		= [](auto params) { return D(_valid = tokenService.ValidateToken(params.token)); }
+		= [](auto params) 
+	{ 
+		auto tokenService = ServiceProvider::Instance().Resolve<TokenService>();
+		return D(_valid = tokenService->ValidateToken(params.token)); 
+	}
 );
 
 void InitializeServices()
@@ -113,9 +119,15 @@ void InitializeServices()
 	std::shared_ptr<ConfigurationService> configurationService = std::make_shared<ConfigurationService>();
 	if (!configurationService->Load("config.ini"))
 		throw std::runtime_error("Could not load configuration");
+	
+	const char* secret = configurationService->Get("Auth", "Key");
+	loggingService->Info("Secret key is {}", secret);
+
+	std::shared_ptr<TokenService> tokenService = std::make_shared<TokenService>(secret);
 
 	ServiceProvider::Instance().Register(loggingService);
 	ServiceProvider::Instance().Register(configurationService);
+	ServiceProvider::Instance().Register(tokenService);
 }
 
 int main()
@@ -128,7 +140,6 @@ int main()
 	auto configurationService = ServiceProvider::Instance().Resolve<ConfigurationService>();
 
 	logger->Info("Starting server...");
-	logger->Info("Secret key is {}", configurationService->Get("Auth", "Key"));
 
 		auto middlewares = std::make_tuple(
 			mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
