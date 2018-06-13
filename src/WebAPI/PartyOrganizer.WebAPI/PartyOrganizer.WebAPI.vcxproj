@@ -75,6 +75,7 @@
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Services\LoggingService.h" />
     <ClInclude Include="Services\TokenService.h" />
     <ClInclude Include="symbols.hh" />
   </ItemGroup>
@@ -86,12 +87,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <CppAdditionalWarning />
-      <AdditionalOptions>-I ~/include/silicon -I ~/include/jwt -fPIC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-I ~/include -fPIC %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lmysqlclient -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>crypto;</LibraryDependencies>
+      <LibraryDependencies>crypto;pthread;</LibraryDependencies>
     </Link>
     <PreBuildEvent>
       <AdditionalSourcesToCopyMapping>

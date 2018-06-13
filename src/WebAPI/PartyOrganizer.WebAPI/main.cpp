@@ -6,6 +6,7 @@
 #include <cstdio>
 
 #include "Services/TokenService.h"
+#include "Services/LoggingService.h"
 
 TokenService tokenService("ubersecret");
 
@@ -101,17 +102,22 @@ auto hello_api = http_api(
 		= [](auto params) { return D(_valid = tokenService.ValidateToken(params.token)); }
 );
 
-
 int main()
 {
 	setbuf(stdout, NULL);
+	
+	LoggingService logger("log.txt");
+
+	logger.Info("Starting server...");
+	logger.Info("[{}] Starting server...", "Web API");
+	logger.Info("[{}] Starting server... {}", "Web API", "Started");
 		printf("Starting server...");
 
 		auto middlewares = std::make_tuple(
 			mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
 			user_orm_factory("users")
 	);
-
+		
 	// Serve hello_api via microhttpd using the json format:
 	sl::mhd_json_serve(hello_api, middlewares, 12345);
 }
