@@ -11,6 +11,9 @@
     <ClCompile Include="Services\ConfigurationService.cpp">
       <Filter>Services</Filter>
     </ClCompile>
+    <ClCompile Include="Services\ServiceProvider.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="symbols.hh" />

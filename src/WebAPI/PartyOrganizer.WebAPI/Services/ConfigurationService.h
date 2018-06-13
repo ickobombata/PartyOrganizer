@@ -1,10 +1,12 @@
 #pragma once
 
 #include "../Configuration/SimpleIni.h"
+#include "LoggingService.hpp"
 
 class ConfigurationService
 {
 public:
+	ConfigurationService();
 	bool Load(const char *);
 
 public:
@@ -13,4 +15,5 @@ public:
 	
 private:
 	CSimpleIni ini;
+	std::shared_ptr<LoggingService> logger;
 };

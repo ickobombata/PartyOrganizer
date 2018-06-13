@@ -76,6 +76,7 @@
     <ClCompile Include="Configuration\ConvertUTF.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Services\ConfigurationService.cpp" />
+    <ClCompile Include="Services\ServiceProvider.cpp" />
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
