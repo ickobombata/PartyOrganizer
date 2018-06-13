@@ -8,6 +8,7 @@
 #include "Services/TokenService.h"
 #include "Services/LoggingService.hpp"
 #include "Services/ServiceProvider.hpp"
+#include "Services/ConfigurationService.h"
 
 TokenService tokenService("ubersecret");
 
@@ -108,8 +109,13 @@ void InitializeServices()
 	std::shared_ptr<LoggingService> loggingService = std::make_shared<LoggingService>();
 	loggingService->RegisterLogFile("WebAPI", "log.txt");
 	loggingService->RegisterConsole("Console");
-	
+
+	std::shared_ptr<ConfigurationService> configurationService = std::make_shared<ConfigurationService>();
+	if (!configurationService->Load("config.ini"))
+		throw std::runtime_error("Could not load configuration");
+
 	ServiceProvider::Instance().Register(loggingService);
+	ServiceProvider::Instance().Register(configurationService);
 }
 
 int main()
@@ -118,9 +124,11 @@ int main()
 	
 	InitializeServices();
 
-	std::shared_ptr<LoggingService> logger = ServiceProvider::Instance().Resolve<LoggingService>();
+	auto logger = ServiceProvider::Instance().Resolve<LoggingService>();
+	auto configurationService = ServiceProvider::Instance().Resolve<ConfigurationService>();
 
 	logger->Info("Starting server...");
+	logger->Info("Secret key is {}", configurationService->Get("Auth", "Key"));
 
 		auto middlewares = std::make_tuple(
 			mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
