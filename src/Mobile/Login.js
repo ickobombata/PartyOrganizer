@@ -10,6 +10,9 @@ import {
     ImageBackground
 } from 'react-native';
 
+import * as settings from './Settings';
+console.log(settings.apiUrl);
+
 export default class Login extends Component {
     state = {
         username: '',
@@ -19,14 +22,15 @@ export default class Login extends Component {
     }
 
     UserLogin = () => {
+        console.log('Logging in...');
         this.setState({ isLoggingIn: true, message: '' });
 
         var params = {
             username: this.state.username,
             password: this.state.password
         };
-
-        fetch('http://192.168.0.104:12345/token/generate', {
+    
+        fetch(`${settings.apiUrl}/token/generate`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -37,8 +41,9 @@ export default class Login extends Component {
             .then((response) => {
                 console.log(response)
                 this.setState({ isLoggingIn: false })
-                if (proceed) this.props.onLoginPress();
+                alert(`Received token ${response.token}`)
             })
+            .then((error) => console.log(error))
             .done();
     }
 
@@ -67,7 +72,7 @@ export default class Login extends Component {
                             {this.state.message}
                         </Text>
                     )}
-                    {this.state.isLoggingIn && <ActivityIndicator />}
+                    {this.state.isLoggingIn && <ActivityIndicator size='large'/>}
                     <Button
                         onPress={this.UserLogin}
                         title="Submit"
@@ -87,12 +92,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     text: {
-        height: 40
+        height: 50,
+        fontSize: 20,
+        color: 'white'
     },
     overlay: {
         position: 'absolute',
         top: 0,
-        right: 0,
+        right: 0, 
         bottom: 0,
         left: 0,
         backgroundColor: 'black',
