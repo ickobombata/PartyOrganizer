@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    ActivityIndicator
+    ActivityIndicator,
+    StyleSheet
 } from 'react-native';
 
 export default class Login extends Component {
@@ -42,10 +43,10 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ScrollView style={{padding: 20}}>
+            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
                 <Text 
                     style={{fontSize: 27}}>
-                    Login
+                    Login  
                 </Text>
                 <TextInput placeholder='Username' onChangeText={(username) => this.setState({username})} />
                 <TextInput placeholder='Password' onChangeText={(password) => this.setState({password})} />
@@ -65,3 +66,15 @@ export default class Login extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        padding: 20,
+        flex: 1,
+        flexDirection: 'column'
+    },
+    contentContainer: {
+        flexGrow: 1,
+        justifyContent: 'center'
+    }
+})
