@@ -10,7 +10,7 @@ import {
     ImageBackground
 } from 'react-native';
 
-import * as settings from './Settings';
+import * as settings from '../config/Settings';
 console.log(settings.apiUrl);
 
 export default class Login extends Component {
@@ -49,7 +49,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ImageBackground style={styles.background} source={require('./content/picnic.jpg')}>
+            <ImageBackground style={styles.background} source={require('../content/picnic.jpg')}>
                 <View style={styles.overlay} />
                 <Text style={styles.title}>
                     Party Organizer
