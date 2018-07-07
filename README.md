@@ -48,7 +48,7 @@ The main goal of this organizer is for a group of people to be on time in some a
 
 ## Contributing
 
-* non for now.
+* none for now.
 
 ## Versioning
 
