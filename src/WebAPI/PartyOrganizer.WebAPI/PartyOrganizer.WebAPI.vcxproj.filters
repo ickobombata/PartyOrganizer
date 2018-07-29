@@ -11,6 +11,8 @@
     <ClInclude Include="Services\TokenService.h">
       <Filter>Services</Filter>
     </ClInclude>
+    <ClInclude Include="Services\DatabaseService.h" />
+    <ClInclude Include="Services\OrmDefenitions.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">

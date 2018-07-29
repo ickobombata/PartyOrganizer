@@ -6,20 +6,16 @@
 #include <cstdio>
 
 #include "Services/TokenService.h"
+#include "Services/DatabaseService.h"
 
 TokenService tokenService("ubersecret");
 
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
 
-typedef decltype(D(_username(_primary_key) = std::string(),
-	_user_password = std::string(),
-	_alias = std::string()))
-	user;
-
 typedef mysql_orm_factory<user> user_orm_factory;
-typedef mysql_orm<user> user_orm;
 
+DatabaseService databaseService;
 				   // Define the API:
 auto hello_api = http_api(
 
@@ -34,22 +30,7 @@ auto hello_api = http_api(
 	},
 
 	GET / _create_user * get_parameters(_username = std::string(), _password = std::string(), _alias = std::string())
-		= [](auto params, user_orm& orm, mysql_connection& db) {
-		int names_count;
-		db("SELECT COUNT(*) from users WHERE username = ?")(params.username) >> names_count;
-		
-		if (names_count > 0) {
-			throw error::bad_request("Username '", params.username, "' already exists");
-		}
-
-		user new_user;
-		new_user.username = params.username;
-		new_user.user_password = params.password;
-		new_user.alias = params.alias;
-		
-		int id = orm.insert(new_user);
-		return D(_id = id);
-	},
+		= databaseService.create_user(_username, _password, _alias),
 
 	GET / _delete_user * get_parameters(_username = std::string()) 
 			= [](auto params, user_orm& orm, mysql_connection& db) {

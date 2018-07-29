@@ -40,11 +40,6 @@
     iod_define_symbol(password)
 #endif
 
-#ifndef IOD_SYMBOL_primary_key
-#define IOD_SYMBOL_primary_key
-    iod_define_symbol(primary_key)
-#endif
-
 #ifndef IOD_SYMBOL_token
 #define IOD_SYMBOL_token
     iod_define_symbol(token)
