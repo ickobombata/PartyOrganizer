@@ -62,23 +62,36 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(IncludePath);$(ISenseIncludePath);$(ProjectDir)\include</IncludePath>
-    <RemoteCCompileToolExe />
+    <RemoteCCompileToolExe>clang++</RemoteCCompileToolExe>
     <RemoteCppCompileToolExe>clang++</RemoteCppCompileToolExe>
     <RemoteLdToolExe>clang++</RemoteLdToolExe>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
     <CustomBuildBeforeTargets>
     </CustomBuildBeforeTargets>
+    <AdditionalSourcesToCopyMapping>
+    </AdditionalSourcesToCopyMapping>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="Configuration\ConvertUTF.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Services\ConfigurationService.cpp" />
+    <ClCompile Include="Services\ServiceProvider.cpp" />
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Services\DatabaseService.h" />
     <ClInclude Include="Services\OrmDefenitions.h" />
+    <ClInclude Include="Configuration\ConvertUTF.h" />
+    <ClInclude Include="Configuration\SimpleIni.h" />
+    <ClInclude Include="Services\ConfigurationService.h" />
+    <ClInclude Include="Services\LoggingService.hpp" />
+    <ClInclude Include="Services\ServiceProvider.hpp" />
     <ClInclude Include="Services\TokenService.h" />
     <ClInclude Include="symbols.hh" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.ini" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -88,12 +101,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <CppAdditionalWarning />
-      <AdditionalOptions>-I ~/include/silicon -I ~/include/jwt -fPIC %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-I ~/include -fPIC %(AdditionalOptions)</AdditionalOptions>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalOptions>-L $(RemoteRootDir)/$(ProjectName) -lmysqlclient -lmicrohttpd %(AdditionalOptions)</AdditionalOptions>
-      <LibraryDependencies>crypto;</LibraryDependencies>
+      <LibraryDependencies>crypto;pthread;</LibraryDependencies>
     </Link>
     <PreBuildEvent>
       <AdditionalSourcesToCopyMapping>
@@ -111,6 +124,7 @@
     <RemotePostBuildEvent>
       <AdditionalSourcesToCopyMapping>
       </AdditionalSourcesToCopyMapping>
+      <Command>cp config.ini ./bin/x64/Debug</Command>
     </RemotePostBuildEvent>
     <CustomBuildStep>
       <Command>
@@ -126,6 +140,10 @@
       <AdditionalSourcesToCopyMapping>
       </AdditionalSourcesToCopyMapping>
     </RemotePreLinkEvent>
+    <PostBuildEvent>
+      <AdditionalSourcesToCopyMapping>
+      </AdditionalSourcesToCopyMapping>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

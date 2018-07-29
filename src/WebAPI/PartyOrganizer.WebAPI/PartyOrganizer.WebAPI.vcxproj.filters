@@ -5,10 +5,34 @@
     <ClCompile Include="Services\TokenService.cpp">
       <Filter>Services</Filter>
     </ClCompile>
+    <ClCompile Include="Configuration\ConvertUTF.c">
+      <Filter>Configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\ConfigurationService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\ServiceProvider.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="symbols.hh" />
     <ClInclude Include="Services\TokenService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\LoggingService.hpp">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ServiceProvider.hpp">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\SimpleIni.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration\ConvertUTF.h">
+      <Filter>Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ConfigurationService.h">
       <Filter>Services</Filter>
     </ClInclude>
     <ClInclude Include="Services\DatabaseService.h" />
@@ -18,5 +42,11 @@
     <Filter Include="Services">
       <UniqueIdentifier>{ade30875-3a86-488b-8c31-383e4da93cba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Configuration">
+      <UniqueIdentifier>{5a5658aa-0956-4f99-a78d-61490cde4f38}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.ini" />
   </ItemGroup>
 </Project>

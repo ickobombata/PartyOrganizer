@@ -6,9 +6,10 @@
 #include <cstdio>
 
 #include "Services/TokenService.h"
+#include "Services/LoggingService.hpp"
+#include "Services/ServiceProvider.hpp"
+#include "Services/ConfigurationService.h"
 #include "Services/DatabaseService.h"
-
-TokenService tokenService("ubersecret");
 
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
@@ -32,67 +33,100 @@ auto hello_api = http_api(
 	GET / _create_user * get_parameters(_username = std::string(), _password = std::string(), _alias = std::string())
 		= databaseService.create_user(_username, _password, _alias),
 
-	GET / _delete_user * get_parameters(_username = std::string()) 
-			= [](auto params, user_orm& orm, mysql_connection& db) {
-		auto r = D(_username = std::string(), _user_password = std::string(), _alias = std::string());
+GET / _delete_user * get_parameters(_username = std::string())
+= [](auto params, user_orm& orm, mysql_connection& db) {
+	auto r = D(_username = std::string(), _user_password = std::string(), _alias = std::string());
 
 
-		std::string alias; std::string name, pass;
-		db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
+	std::string alias; std::string name, pass;
+	db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
 
-		if (name == "") {
-			throw error::not_found("Username '", params.username, "' does not exists");
-		}
+	if (name == "") {
+		throw error::not_found("Username '", params.username, "' does not exists");
+	}
 
-		user u;
-		u.username = name;
-		u.user_password = pass;
-		u.alias = alias;
+	user u;
+	u.username = name;
+	u.user_password = pass;
+	u.alias = alias;
 
-		orm.destroy(u);
+	orm.destroy(u);
 
-		return(D(_alias = alias, _username = name, _password = pass));
-	},
-		// TODO stoevm: remove code duplication!!!
-	GET / _update_user * get_parameters(_username = std::string(), 
-		_password = std::string(), _alias = std::string())
-			= [](auto params, user_orm& orm, mysql_connection& db) {
+	return(D(_alias = alias, _username = name, _password = pass));
+},
+// TODO stoevm: remove code duplication!!!
+GET / _update_user * get_parameters(_username = std::string(),
+	_password = std::string(), _alias = std::string())
+	= [](auto params, user_orm& orm, mysql_connection& db) {
 
-		std::string alias; std::string name, pass;
-		db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
+	std::string alias; std::string name, pass;
+	db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
 
-		if (name == "") {
-			throw error::not_found("Username '", params.username, "' does not exists");
-		}
-		
-		user u;
-		u.username = name;
-		u.user_password = params.password;
-		u.alias = params.alias;
+	if (name == "") {
+		throw error::not_found("Username '", params.username, "' does not exists");
+	}
 
-		int id = orm.update(u);
+	user u;
+	u.username = name;
+	u.user_password = params.password;
+	u.alias = params.alias;
 
-		return D(_id = id);
-	},
+	int id = orm.update(u);
 
-	POST / _token / _generate * post_parameters(_username, _password)
-		= [](auto params) { return D(_token = tokenService.GenerateToken(params.username, params.password)); },
+	return D(_id = id);
+},
 
-	POST / _token / _validate * post_parameters(_token)
-		= [](auto params) { return D(_valid = tokenService.ValidateToken(params.token)); }
+POST / _token / _generate * post_parameters(_username, _password)
+= [](auto params)
+{
+	auto tokenService = ServiceProvider::Instance().Resolve<TokenService>();
+	return D(_token = tokenService->GenerateToken(params.username, params.password));
+},
+
+POST / _token / _validate * post_parameters(_token)
+= [](auto params)
+{
+	auto tokenService = ServiceProvider::Instance().Resolve<TokenService>();
+	return D(_valid = tokenService->ValidateToken(params.token));
+}
 );
 
+void InitializeServices()
+{
+	std::shared_ptr<LoggingService> loggingService = std::make_shared<LoggingService>();
+	loggingService->RegisterLogFile("WebAPI", "log.txt");
+	loggingService->RegisterConsole("Console");
+
+	ServiceProvider::Instance().Register(loggingService);
+
+	std::shared_ptr<ConfigurationService> configurationService = std::make_shared<ConfigurationService>();
+	if (!configurationService->Load("config.ini"))
+		throw std::runtime_error("Could not load configuration");
+
+	ServiceProvider::Instance().Register(configurationService);
+
+	const char* secret = configurationService->Get("Auth", "Key");
+	std::shared_ptr<TokenService> tokenService = std::make_shared<TokenService>(secret);
+
+	ServiceProvider::Instance().Register(tokenService);
+}
 
 int main()
 {
 	setbuf(stdout, NULL);
-		printf("Starting server...");
 
-		auto middlewares = std::make_tuple(
-			mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
-			user_orm_factory("users")
+	InitializeServices();
+
+	auto logger = ServiceProvider::Instance().Resolve<LoggingService>();
+
+	logger->Info("Loading middlewares...");
+
+	auto middlewares = std::make_tuple(
+		mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
+		user_orm_factory("users")
 	);
 
+	logger->Info("Server started.");
 	// Serve hello_api via microhttpd using the json format:
 	sl::mhd_json_serve(hello_api, middlewares, 12345);
 }
