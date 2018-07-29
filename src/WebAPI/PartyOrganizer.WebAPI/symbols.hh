@@ -25,11 +25,6 @@
     iod_define_symbol(hello)
 #endif
 
-#ifndef IOD_SYMBOL_id
-#define IOD_SYMBOL_id
-    iod_define_symbol(id)
-#endif
-
 #ifndef IOD_SYMBOL_message
 #define IOD_SYMBOL_message
     iod_define_symbol(message)
@@ -48,11 +43,6 @@
 #ifndef IOD_SYMBOL_update_user
 #define IOD_SYMBOL_update_user
     iod_define_symbol(update_user)
-#endif
-
-#ifndef IOD_SYMBOL_user_password
-#define IOD_SYMBOL_user_password
-    iod_define_symbol(user_password)
 #endif
 
 #ifndef IOD_SYMBOL_username

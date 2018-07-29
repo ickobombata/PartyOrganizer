@@ -1,79 +1,99 @@
 #pragma once
 
 #include "OrmDefenitions.h"
+#include "ServiceProvider.hpp"
+#include "LoggingService.hpp"
 
 using namespace sl; // Silicon namespace
 using namespace s;
 
-typedef mysql_orm<user> user_orm;
-
+typedef mysql_orm<User> user_orm;
 
 class DatabaseService {
 private:
-
+	std::shared_ptr<LoggingService> logger;
 public:
+	DatabaseService() {
+		logger = ServiceProvider::Instance().Resolve<LoggingService>();
+	}
 
-	auto create_user(std::string username, std::string password, std::string alias) {
-		return [](auto params, user_orm& orm, mysql_connection& db) {
-			int names_count;
-			db("SELECT COUNT(*) from users WHERE username = ?")(params.username) >> names_count;
+	auto CreateUser() {
+		return [this](auto params, user_orm& orm, mysql_connection& db) {
+			int namesCount;
+			db("SELECT COUNT(*) from Users WHERE username = ?")(params.username) >> namesCount;
 
-			if (names_count > 0) {
+			if (namesCount > 0) {
 				throw error::bad_request("Username '", params.username, "' already exists");
 			}
 
-			user new_user;
-			new_user.username = params.username;
-			new_user.user_password = params.password;
-			new_user.alias = params.alias;
+			User user;
+			user.username = params.username;
+			user.password = params.password;
+			user.alias = params.alias;
 
-			int id = orm.insert(new_user);
+			int id = orm.insert(user);
+			logger->Info("Created User with id %d", id);
 
 			return D(_id = id);
 		};
 	}
-		
-	/*
-	http_verb<http_get> delete_user = GET / _delete_user * get_parameters(_username = std::string())
-	= [](auto params, user_orm& orm, mysql_connection& db) {
-	auto r = D(_username = std::string(), _user_password = std::string(), _alias = std::string());
 
+	auto DeleteUser() {
+		return [this](auto params, user_orm& orm, mysql_connection& db) 
+		{
+			auto r = D(_username = std::string(), _password = std::string(), _alias = std::string());
 
-	std::string alias; std::string name, pass;
-	db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
+			std::string alias; std::string name, pass;
+			db("SELECT * from Users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
 
-	if (name == "") {
-	throw error::not_found("Username '", params.username, "' does not exists");
+			if (name == "")
+			{
+				throw error::not_found("Username '", params.username, "' does not exists");
+			}
+
+			User user;
+			user.username = name;
+			user.password = pass;
+			user.alias = alias;
+
+			orm.destroy(user);
+
+			return D(_alias = alias, _username = name, _password = pass);
+		};
 	}
 
-	user u;
-	u.username = name;
-	u.user_password = pass;
-	u.alias = alias;
+	auto EditUser() {
+		return [this](auto params, user_orm& orm, mysql_connection& db) 
+		{
+			std::string alias; std::string name, pass;
+			db("SELECT * from Users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
 
-	orm.destroy(u);
+			if (name == "") 
+			{
+				throw error::not_found("Username '", params.username, "' does not exists");
+			}
 
-	return(D(_alias = alias, _username = name, _password = pass));
-	};
+			User user;
+			user.username = name;
+			user.password = params.password;
+			user.alias = params.alias;
 
-	http_verb<http_get> update_user = GET / _update_user * get_parameters(_username = std::string(),
-	_password = std::string(), _alias = std::string())
-	= [](auto params, user_orm& orm, mysql_connection& db) {
+			int id = orm.update(user);
 
-	std::string alias; std::string name, pass;
-	db("SELECT * from users WHERE username = ? LIMIT 1")(params.username) >> std::tie(name, pass, alias);
-
-	if (name == "") {
-	throw error::not_found("Username '", params.username, "' does not exists");
+			return D(_id = id);
+		};
 	}
 
-	user u;
-	u.username = name;
-	u.user_password = params.password;
-	u.alias = params.alias;
-
-	int id = orm.update(u);
-
-	return D(_id = id);
-	};*/
+	auto GetUser() {
+		return [this](auto params, mysql_connection& db) 
+		{
+			std::string name, alias;
+			db("SELECT username, alias from Users where username = ?")(params.username) >> std::tie(name, alias);
+			if (name == "") 
+			{
+				throw error::bad_request("Username '", params.username, "' does not exists");
+			}
+			return D(_username = name, _alias = alias);
+		};
+	}
 };
