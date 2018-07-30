@@ -37,6 +37,7 @@
     </ClInclude>
     <ClInclude Include="Services\DatabaseService.h" />
     <ClInclude Include="Services\OrmDefenitions.h" />
+    <ClInclude Include="ServiceInitializer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">

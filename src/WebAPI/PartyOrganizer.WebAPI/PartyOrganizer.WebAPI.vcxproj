@@ -80,6 +80,7 @@
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ServiceInitializer.h" />
     <ClInclude Include="Services\DatabaseService.h" />
     <ClInclude Include="Services\OrmDefenitions.h" />
     <ClInclude Include="Configuration\ConvertUTF.h" />
@@ -111,7 +112,7 @@
     <PreBuildEvent>
       <AdditionalSourcesToCopyMapping>
       </AdditionalSourcesToCopyMapping>
-      <Command>"../../x64/Debug/IoDGenerateSymbols" main.cpp symbols.hh</Command>
+      <Command>"../../x64/Debug/IoDGenerateSymbols" main.cpp ServiceInitializer.h ./Services/DatabaseService.h ./Services/OrmDefenitions.h symbols.hh</Command>
     </PreBuildEvent>
     <RemotePreBuildEvent>
       <Command>
