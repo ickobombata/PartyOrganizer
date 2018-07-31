@@ -112,7 +112,7 @@
     <PreBuildEvent>
       <AdditionalSourcesToCopyMapping>
       </AdditionalSourcesToCopyMapping>
-      <Command>"../../x64/Debug/IoDGenerateSymbols" main.cpp ServiceInitializer.h ./Services/DatabaseService.h ./Services/OrmDefenitions.h symbols.hh</Command>
+      <Command>"../../x64/Debug/IoDGenerateSymbols" $(ProjectDir) symbols.hh</Command>
     </PreBuildEvent>
     <RemotePreBuildEvent>
       <Command>

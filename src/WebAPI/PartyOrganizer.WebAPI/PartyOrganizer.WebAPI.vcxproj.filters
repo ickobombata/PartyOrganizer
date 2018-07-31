@@ -35,9 +35,13 @@
     <ClInclude Include="Services\ConfigurationService.h">
       <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="Services\DatabaseService.h" />
-    <ClInclude Include="Services\OrmDefenitions.h" />
     <ClInclude Include="ServiceInitializer.h" />
+    <ClInclude Include="Services\OrmDefenitions.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\DatabaseService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">
