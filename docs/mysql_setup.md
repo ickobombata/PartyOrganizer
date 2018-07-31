@@ -17,11 +17,12 @@ mysql> FLUSH PRIVILEGES;
 
 * Create database and tables (copy paste won't work, please copy line by line):
 
-```mysql> CREATE DATABASE party_organizer;
+```
+mysql> CREATE DATABASE party_organizer;
 mysql> USE party_organizer;
 mysql> CREATE TABLE users (
 		username VARCHAR(20) NOT NULL,
-		user_password VARCHAR(120) NOT NULL,
+		password VARCHAR(120) NOT NULL,
 		alias VARCHAR(20) DEFAULT NULL,
 		PRIMARY KEY (username)
 		);
