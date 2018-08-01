@@ -3,7 +3,7 @@
 
 using namespace s; // Symbols namespace
 
-#define USE_DB true;
+#define USE_DB;
 
 #ifdef USE_DB
 typedef decltype(D(_username(_primary_key) = std::string(),
