@@ -3,9 +3,7 @@
 
 using namespace s; // Symbols namespace
 
-#define USE_DB;
 
-#ifdef USE_DB
 typedef decltype(D(_username(_primary_key) = std::string(),
 	_password = std::string(),
 	_alias = std::string()
@@ -46,4 +44,3 @@ typedef decltype(D(_id(_auto_increment) = int(),
 	_minUsers = int(),
 	_maxUsers = int()
 )) Event;
-#endif
