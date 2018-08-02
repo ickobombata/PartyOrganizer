@@ -41,7 +41,7 @@ public:
 			GET / _hello = []() { return D(_message = "Hello world."); },
 
 			// example of the database data retrieval
-			GET / _username * get_parameters(_username = std::string())
+			GET / _get_user * get_parameters(_username = std::string())
 			= ServiceProvider::Instance().Resolve<DatabaseService>()->GetUser(),
 
 			GET / _create_user * get_parameters(_username = std::string(), _password = std::string(), _alias = std::string())

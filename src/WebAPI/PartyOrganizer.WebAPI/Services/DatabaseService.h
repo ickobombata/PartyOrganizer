@@ -3,7 +3,8 @@
 #include "LoggingService.hpp"
 #include "ServiceProvider.hpp"
 #include "OrmDefenitions.h"
-#include <vector>
+#include <unordered_map>
+#include <string>
 
 using namespace sl; // Silicon namespace
 using namespace s; // symbols namespace
@@ -103,105 +104,70 @@ public:
 
 #ifndef USE_DB
 private:
-	std::vector<User> users;
-	std::vector<Multimedia> multimedia;
-	std::vector<Task> tasks;
-	std::vector<Message> messages;
-	std::vector<Chat> chats;
-	std::vector<Status> statuses;
-	std::vector<Event> events;
+	std::unordered_map<std::string, User*> users;
+	std::unordered_map<std::string, Multimedia> multimedia;
+	std::unordered_map<std::string, Task> tasks;
+	std::unordered_map<std::string, Message> messages;
+	std::unordered_map<std::string, Chat> chats;
+	std::unordered_map<std::string, Status> statuses;
+	std::unordered_map<std::string, Event> events;
 
 public:
 	auto CreateUser()
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db) {
-			for (int i = 0; i < this->users.size(); ++i)
-			{
-				if (this->users[i].username == params.username)
-				{
-					throw error::bad_request("Username '", params.username, "' already exists");
-				}
+			if (this->users.find(params.username) != this->users.end()) {
+				return D(_status = "fail");
 			}
 
-			User user;
-			user.username = params.username;
-			user.password = params.password;
-			user.alias = params.alias;
+			User* user = new User();
+			user->username = params.username;
+			user->password = params.password;
+			user->alias = params.alias;
 
-			this->users.push_back(user);
+			this->users[params.username] = user;
 
 			logger->Info("Created User with id %d", this->users.size());
 
-			return D(_id = this->users.size());
+			return D(_status = "ok");
 		};
 	}
 	auto DeleteUser()
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			int index = -1;
-			for (int i = 0; i < this->users.size(); ++i)
-			{
-				if (this->users[i].username == params.username)
-				{
-					index = i;
-					break;
-				}
+			if (this->users.find(params.username) == this->users.end()) {
+				return D(_status = "fail");
 			}
+			this->users.erase(params.username);
 
-			if (index >= 0)
-			{
-				this->users.erase(this->users.begin() + index);
-			}
-			else
-			{
-				throw error::not_found("Username '", params.username, "' does not exists");
-			}
-
-			return D(_id = index);
+			return D(_status = "ok");
 		};
 	}
 	auto EditUser()
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			int index = -1;
-			for (int i = 0; i < this->users.size(); ++i)
-			{
-				if (this->users[i].username == params.username)
-				{
-					index = i;
-					break;
-				}
+			if (this->users.find(params.username) == this->users.end()) {
+				return D(_status = "fail");
 			}
+			
+			this->users[params.username]->password = params.password;
+			this->users[params.username]->alias = params.alias;
 
-			if (index >= 0)
-			{
-				this->users[index].username = params.username;
-				this->users[index].password = params.password;
-				this->users[index].alias = params.alias;
-			}
-			else
-			{
-				throw error::not_found("Username '", params.username, "' does not exists");
-			}
-
-			return D(_id = index);
+			return D(_status = "ok");
 		};
 	}
 	auto GetUser()
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			for (int i = 0; i < this->users.size(); ++i)
-			{
-				if (this->users[i].username == params.username)
-				{
-					return D(_username = this->users[i].username, _alias = this->users[i].alias);
-				}
+			if (this->users.find(params.username) == this->users.end()) {
+				return D(_status = "fail", _username = params.username, _alias = std::string(""));
 			}
-			throw error::not_found("Username '", params.username, "' does not exists");
+
+			return D(_status = "ok", _username = params.username, _alias = this->users.find(params.username)->second->alias);
 		};
 	}
 #endif
-};
+}; 
