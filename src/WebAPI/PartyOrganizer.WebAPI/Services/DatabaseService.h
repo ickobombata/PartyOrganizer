@@ -115,8 +115,10 @@ private:
 public:
 	auto CreateUser()
 	{
-		return [this](auto params, user_orm& orm, mysql_connection& db) {
-			if (this->users.find(params.username) != this->users.end()) {
+		return [this](auto params, user_orm& orm, mysql_connection& db) 
+		{
+			if (this->users.find(params.username) != this->users.end()) 
+			{
 				return D(_status = "fail");
 			}
 
@@ -136,7 +138,8 @@ public:
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			if (this->users.find(params.username) == this->users.end()) {
+			if (this->users.find(params.username) == this->users.end()) 
+			{
 				return D(_status = "fail");
 			}
 			this->users.erase(params.username);
@@ -148,7 +151,8 @@ public:
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			if (this->users.find(params.username) == this->users.end()) {
+			if (this->users.find(params.username) == this->users.end()) 
+			{
 				return D(_status = "fail");
 			}
 			
@@ -162,7 +166,8 @@ public:
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			if (this->users.find(params.username) == this->users.end()) {
+			if (this->users.find(params.username) == this->users.end()) 
+			{
 				return D(_status = "fail", _username = params.username, _alias = std::string(""));
 			}
 
