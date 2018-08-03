@@ -23,12 +23,11 @@ public:
 		logger = ServiceProvider::Instance().Resolve<LoggingService>();
 		configuration = ServiceProvider::Instance().Resolve<ConfigurationService>();
 
-		const char* debug = configuration->Get("Database", "Debug");
-		if (!strcmp(debug, "true"))
+		std::string debugDatabase = configuration->Get("Database", "Debug");
+		if (debugDatabase == "true")
 			users = std::make_unique<RAMUserRepository>();
 	}
-
-
+	
 public:
 	auto CreateUser()
 	{

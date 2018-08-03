@@ -16,7 +16,7 @@ bool ConfigurationService::Load(const char* filePath)
 	return result >= 0;
 }
 
-const char* ConfigurationService::Get(const char* section, const char* key) const
+std::string ConfigurationService::Get(const char* section, const char* key) const
 {
 	return ini.GetValue(section, key);
 }

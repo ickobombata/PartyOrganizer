@@ -4,9 +4,9 @@
 
 char ISSUER[] = "Party Organizer";
 
-TokenService::TokenService(const char* secret)
+TokenService::TokenService(const std::string& secret) : signingSecret(secret)
 {
-	strcpy(signingSecret, secret);
+
 }
 
 std::string TokenService::GenerateToken(const std::string& username, const std::string& password)

@@ -10,7 +10,7 @@ public:
 	bool Load(const char *);
 
 public:
-	const char* Get(const char *, const char *) const;
+	std::string Get(const char *, const char *) const;
 	void Set(const char *, const char *, const char *);
 	
 private:

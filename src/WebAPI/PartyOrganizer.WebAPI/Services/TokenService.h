@@ -6,12 +6,12 @@
 class TokenService
 {
 public:
-	TokenService(const char *);
+	TokenService(const std::string &);
 
 public:
 	std::string GenerateToken(const std::string &, const std::string &);
 	bool ValidateToken(const std::string &);
 
 private:
-	char signingSecret[64];
+	std::string signingSecret;
 };
