@@ -6,10 +6,6 @@
 class RAMUserRepository : public IUserRepository
 {
 public:
-	RAMUserRepository()
-	{   }
-
-public:
 	virtual int CreateUser(const std::string& username, const std::string& password, const std::string& alias) override;
 	virtual bool DeleteUser(const std::string& username) override;
 	virtual int EditUser(const std::string& username, const std::string& password, const std::string& alias) override;

@@ -8,6 +8,9 @@ public:
 	static const int ID_NOT_FOUND = -1;
 	
 public:
+	IUserRepository()
+	{   }
+
 	virtual ~IUserRepository()
 	{   }
 
