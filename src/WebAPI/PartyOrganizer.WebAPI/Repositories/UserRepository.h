@@ -2,12 +2,14 @@
 
 #include "IUserRepository.h"
 
+
+#ifdef USE_DB
+
 class UserRepository : public IUserRepository
 {
 
 };
 
-#ifdef USE_DB
 auto CreateUser() {
 	return [this](auto params, user_orm& orm, mysql_connection& db) {
 		int namesCount;

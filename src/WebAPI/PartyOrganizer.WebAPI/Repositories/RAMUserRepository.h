@@ -9,7 +9,7 @@ public:
 	RAMUserRepository()
 	{   }
 
-	~RAMUserRepository()
+	virtual ~RAMUserRepository()
 	{   }
 
 public:
