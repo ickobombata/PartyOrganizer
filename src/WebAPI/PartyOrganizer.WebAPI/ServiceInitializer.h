@@ -18,14 +18,14 @@ public:
 		loggingService->RegisterConsole("Console");
 
 		ServiceProvider::Instance().Register(loggingService);
-
+		
 		std::shared_ptr<ConfigurationService> configurationService = std::make_shared<ConfigurationService>();
 		if (!configurationService->Load("config.ini"))
 			throw std::runtime_error("Could not load configuration");
 
 		ServiceProvider::Instance().Register(configurationService);
-
-		const char* secret = configurationService->Get("Auth", "Key");
+		
+		std::string secret = configurationService->Get("Auth", "Key");
 		std::shared_ptr<TokenService> tokenService = std::make_shared<TokenService>(secret);
 
 		ServiceProvider::Instance().Register(tokenService);
