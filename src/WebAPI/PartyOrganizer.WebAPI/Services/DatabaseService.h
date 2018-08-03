@@ -17,11 +17,6 @@ typedef mysql_orm<User> user_orm;
 
 class DatabaseService
 {
-private:
-	std::shared_ptr<LoggingService> logger;
-	std::shared_ptr<ConfigurationService> configuration;
-	IUserRepository* users;
-	
 public:
 	DatabaseService() : users(nullptr)
 	{
@@ -90,4 +85,9 @@ public:
 			return D(_status = "ok", _username = params.username, _alias = user->alias);
 		};
 	}
+
+private:
+	std::shared_ptr<LoggingService> logger;
+	std::shared_ptr<ConfigurationService> configuration;
+	IUserRepository* users;
 }; 
