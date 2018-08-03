@@ -73,8 +73,8 @@ public:
 	auto GetUser()
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
-		{
-			User* user = users->GetUser(params.username);
+		{	
+			std::shared_ptr<User> user = users->GetUser(params.username);
 			if (!user) 
 			{
 				return D(_status = "fail", _username = params.username, _alias = std::string(""));

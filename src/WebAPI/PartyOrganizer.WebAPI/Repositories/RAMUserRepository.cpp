@@ -5,7 +5,7 @@ int RAMUserRepository::CreateUser(const std::string& username, const std::string
 	if (this->users.find(username) == this->users.end())
 		return ID_NOT_FOUND;
 
-	User* user = new User();
+	std::shared_ptr<User> user = std::make_shared<User>();
 	user->username = username;
 	user->password = password;
 	user->alias = alias;
@@ -34,7 +34,7 @@ int RAMUserRepository::EditUser(const std::string& username, const std::string& 
 	this->users[username]->alias = alias;
 }
 
-User* RAMUserRepository::GetUser(const std::string& username)
+std::shared_ptr<User> RAMUserRepository::GetUser(const std::string& username)
 {
 	if (this->users.find(username) == this->users.end())
 		return nullptr;
