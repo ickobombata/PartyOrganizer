@@ -6,9 +6,6 @@
 class RAMUserRepository : public IUserRepository
 {
 public:
-	RAMUserRepository()
-	{   }
-
 	virtual ~RAMUserRepository()
 	{   }
 

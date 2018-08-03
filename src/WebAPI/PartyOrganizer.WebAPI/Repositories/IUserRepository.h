@@ -8,11 +8,7 @@ public:
 	static const int ID_NOT_FOUND = -1;
 	
 public:
-	IUserRepository()
-	{   }
-
-	virtual ~IUserRepository()
-	{   }
+	virtual ~IUserRepository() = 0;
 
 public:
 	virtual int CreateUser(const std::string& username, const std::string& password, const std::string& alias) = 0;
