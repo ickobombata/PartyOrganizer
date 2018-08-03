@@ -25,7 +25,7 @@ public:
 
 		const char* debug = configuration->Get("Database", "Debug");
 		if (!strcmp(debug, "true"))
-			users = new RAMUserRepository();
+			users = std::make_unique<RAMUserRepository>();
 	}
 
 
@@ -75,9 +75,8 @@ public:
 	{
 		return [this](auto params, user_orm& orm, mysql_connection& db)
 		{
-			User* user = nullptr;
-			bool exists = users->GetUser(params.username);
-			if (!exists) 
+			User* user = users->GetUser(params.username);
+			if (!user) 
 			{
 				return D(_status = "fail", _username = params.username, _alias = std::string(""));
 			}
@@ -89,5 +88,5 @@ public:
 private:
 	std::shared_ptr<LoggingService> logger;
 	std::shared_ptr<ConfigurationService> configuration;
-	IUserRepository* users;
+	std::unique_ptr<IUserRepository> users;
 }; 
