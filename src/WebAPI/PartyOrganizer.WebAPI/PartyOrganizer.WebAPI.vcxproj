@@ -86,7 +86,7 @@
     <ClInclude Include="Repositories\UserRepository.h" />
     <ClInclude Include="ServiceInitializer.h" />
     <ClInclude Include="Services\DatabaseService.h" />
-    <ClInclude Include="Services\OrmDefenitions.h" />
+    <ClInclude Include="Services\OrmDefinitions.h" />
     <ClInclude Include="Configuration\ConvertUTF.h" />
     <ClInclude Include="Configuration\SimpleIni.h" />
     <ClInclude Include="Services\ConfigurationService.h" />

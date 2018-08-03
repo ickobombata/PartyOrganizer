@@ -3,7 +3,7 @@
 #include "LoggingService.hpp"
 #include "ConfigurationService.h"
 #include "ServiceProvider.hpp"
-#include "OrmDefenitions.h"
+#include "OrmDefinitions.h"
 #include "../Repositories/RAMUserRepository.h"
 #include <unordered_map>
 #include <string>
@@ -12,8 +12,6 @@ using namespace sl; // Silicon namespace
 using namespace s; // symbols namespace
 
 typedef mysql_orm<User> user_orm;
-
-//#define USE_DB
 
 class DatabaseService
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Services/OrmDefenitions.h"
+#include "../Services/OrmDefinitions.h"
 #include <memory>
 
 class IUserRepository

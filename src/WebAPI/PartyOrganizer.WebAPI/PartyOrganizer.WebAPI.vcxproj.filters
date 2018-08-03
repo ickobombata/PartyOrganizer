@@ -39,9 +39,6 @@
       <Filter>Services</Filter>
     </ClInclude>
     <ClInclude Include="ServiceInitializer.h" />
-    <ClInclude Include="Services\OrmDefenitions.h">
-      <Filter>Services</Filter>
-    </ClInclude>
     <ClInclude Include="Services\DatabaseService.h">
       <Filter>Services</Filter>
     </ClInclude>
@@ -53,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="Repositories\UserRepository.h">
       <Filter>Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\OrmDefinitions.h">
+      <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
