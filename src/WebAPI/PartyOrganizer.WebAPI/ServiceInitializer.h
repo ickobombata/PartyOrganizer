@@ -53,6 +53,12 @@ public:
 			GET / _update_user * get_parameters(_username = std::string(), _password = std::string(), _alias = std::string())
 			= ServiceProvider::Instance().Resolve<DatabaseService>()->EditUser(),
 
+			GET / _create_room * get_parameters(_name = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->CreateRoom(),
+
+			GET / _delete_room * get_parameters(_name = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->DeleteRoom(),
+
 			POST / _token / _generate * post_parameters(_username, _password)
 			= [](auto params)
 			{

@@ -65,6 +65,26 @@
     iod_define_symbol(update_user)
 #endif
 
+#ifndef IOD_SYMBOL_create_room
+#define IOD_SYMBOL_create_room
+    iod_define_symbol(create_room)
+#endif
+
+#ifndef IOD_SYMBOL_name
+#define IOD_SYMBOL_name
+    iod_define_symbol(name)
+#endif
+
+#ifndef IOD_SYMBOL_auto_increment
+#define IOD_SYMBOL_auto_increment
+    iod_define_symbol(auto_increment)
+#endif
+
+#ifndef IOD_SYMBOL_delete_room
+#define IOD_SYMBOL_delete_room
+    iod_define_symbol(delete_room)
+#endif
+
 #ifndef IOD_SYMBOL_token
 #define IOD_SYMBOL_token
     iod_define_symbol(token)
@@ -95,11 +115,6 @@
     iod_define_symbol(status)
 #endif
 
-#ifndef IOD_SYMBOL_auto_increment
-#define IOD_SYMBOL_auto_increment
-    iod_define_symbol(auto_increment)
-#endif
-
 #ifndef IOD_SYMBOL_media
 #define IOD_SYMBOL_media
     iod_define_symbol(media)
@@ -108,11 +123,6 @@
 #ifndef IOD_SYMBOL_extension
 #define IOD_SYMBOL_extension
     iod_define_symbol(extension)
-#endif
-
-#ifndef IOD_SYMBOL_name
-#define IOD_SYMBOL_name
-    iod_define_symbol(name)
 #endif
 
 #ifndef IOD_SYMBOL_complexity

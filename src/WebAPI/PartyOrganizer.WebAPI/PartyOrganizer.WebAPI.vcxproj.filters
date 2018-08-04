@@ -17,6 +17,7 @@
     <ClCompile Include="Repositories\RAMUserRepository.cpp">
       <Filter>Repositories</Filter>
     </ClCompile>
+    <ClCompile Include="Repositories\Room\RAMRoomRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="symbols.hh" />
@@ -54,6 +55,8 @@
     <ClInclude Include="Services\OrmDefinitions.h">
       <Filter>Services</Filter>
     </ClInclude>
+    <ClInclude Include="Repositories\Room\IRoomRepository.h" />
+    <ClInclude Include="Repositories\Room\RAMRoomRepository.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">

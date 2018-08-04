@@ -75,13 +75,16 @@
   <ItemGroup>
     <ClCompile Include="Configuration\ConvertUTF.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Repositories\Room\RAMRoomRepository.cpp" />
     <ClCompile Include="Repositories\RAMUserRepository.cpp" />
     <ClCompile Include="Services\ConfigurationService.cpp" />
     <ClCompile Include="Services\ServiceProvider.cpp" />
     <ClCompile Include="Services\TokenService.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Repositories\Room\IRoomRepository.h" />
     <ClInclude Include="Repositories\IUserRepository.h" />
+    <ClInclude Include="Repositories\Room\RAMRoomRepository.h" />
     <ClInclude Include="Repositories\RAMUserRepository.h" />
     <ClInclude Include="Repositories\UserRepository.h" />
     <ClInclude Include="ServiceInitializer.h" />

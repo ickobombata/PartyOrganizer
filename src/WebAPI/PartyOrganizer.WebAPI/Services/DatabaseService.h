@@ -5,6 +5,7 @@
 #include "ServiceProvider.hpp"
 #include "OrmDefinitions.h"
 #include "../Repositories/RAMUserRepository.h"
+#include "../Repositories/Room/RAMRoomRepository.h"
 #include <unordered_map>
 #include <string>
 
@@ -80,10 +81,40 @@ public:
 
 			return D(_status = "ok", _username = params.username, _alias = user->alias);
 		};
+	}	
+	
+	auto CreateRoom()
+	{
+		return [this](auto params)
+		{
+			bool created = rooms->CreateRoom(params.name);
+			if (!created)
+			{
+				return D(_status = "fail");
+			}
+
+			logger->Info("Created Room with name %s", params.name);
+
+			return D(_status = "ok");
+		};
+	}
+	auto DeleteRoom()
+	{
+		return [this](auto params)
+		{
+			bool deleted = rooms->DeleteRoom(params.name);
+			if (!deleted)
+			{
+				return D(_status = "fail");
+			}
+
+			return D(_status = "ok");
+		};
 	}
 
 private:
 	std::shared_ptr<LoggingService> logger;
 	std::shared_ptr<ConfigurationService> configuration;
 	std::unique_ptr<IUserRepository> users;
+	std::unique_ptr<IRoomRepository> rooms;
 }; 
