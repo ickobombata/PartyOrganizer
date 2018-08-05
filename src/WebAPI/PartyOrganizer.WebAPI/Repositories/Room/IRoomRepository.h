@@ -6,8 +6,7 @@
 class IRoomRepository
 {
 public:
-	static const int ID_NOT_FOUND = -1;
-
+	static const int ID_ALREADY_EXISTS = -2;
 public:
 	virtual ~IRoomRepository()
 	{   }

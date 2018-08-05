@@ -18,6 +18,8 @@
       <Filter>Repositories</Filter>
     </ClCompile>
     <ClCompile Include="Repositories\Room\RAMRoomRepository.cpp" />
+    <ClCompile Include="Repositories\Event\RAMEventRepository.cpp" />
+    <ClCompile Include="Repositories\Event\Event.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="symbols.hh" />
@@ -57,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="Repositories\Room\IRoomRepository.h" />
     <ClInclude Include="Repositories\Room\RAMRoomRepository.h" />
+    <ClInclude Include="Repositories\Event\IEventRepository.h" />
+    <ClInclude Include="Repositories\Event\RAMEventRepository.h" />
+    <ClInclude Include="Repositories\Event\Event.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">

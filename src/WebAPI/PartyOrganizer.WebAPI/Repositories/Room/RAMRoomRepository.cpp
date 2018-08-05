@@ -2,8 +2,8 @@
 
 int RAMRoomRepository::CreateRoom(const std::string& name)
 {
-	if (this->rooms.find(name) == this->rooms.end())
-		return ID_NOT_FOUND;
+	if (this->rooms.find(name) != this->rooms.end())
+		return ID_ALREADY_EXISTS;
 
 	std::shared_ptr<Room> room = std::make_shared<Room>();
 	room->name = name;
