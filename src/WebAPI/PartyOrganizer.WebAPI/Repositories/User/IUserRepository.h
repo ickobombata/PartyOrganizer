@@ -1,12 +1,13 @@
 #pragma once
 
-#include "../Services/OrmDefinitions.h"
 #include <memory>
+#include "User.h"
 
 class IUserRepository
 {
 public:
 	static const int ID_NOT_FOUND = -1;
+	static const int ID_ALREADY_EXISTS = -2;
 	
 public:
 	virtual ~IUserRepository()

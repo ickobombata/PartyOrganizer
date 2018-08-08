@@ -2,12 +2,10 @@
 
 #include "IRoomRepository.h"
 #include <unordered_map>
+#include "Room.h"
 
 class RAMRoomRepository : public IRoomRepository
 {
-	struct Room {
-		std::string name;
-	};
 public:
 	virtual ~RAMRoomRepository()
 	{   }

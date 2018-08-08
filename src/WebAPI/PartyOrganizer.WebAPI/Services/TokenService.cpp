@@ -42,7 +42,6 @@ bool TokenService::ValidateToken(const std::string& token)
 	}
 	catch (const std::runtime_error& e)
 	{
-		const char* wut = e.what();
 		return false;
 	}
 

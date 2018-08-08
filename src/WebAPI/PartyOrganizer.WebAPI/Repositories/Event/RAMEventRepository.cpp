@@ -28,7 +28,7 @@ int RAMEventRepository::EditEvent(std::string& roomName, std::string& eventName,
 {
 	auto key = std::make_pair(roomName, eventName);
 	if (this->events.find(key) == this->events.end())
-		return -1;
+		return ID_NOT_FOUND;
 
 	this->events[key] = std::make_shared<Event>(Event(eventName, dateStarts, dateEnds, dateCreated, minUsers, maxUsers));
 }

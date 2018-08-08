@@ -6,7 +6,7 @@ int RAMRoomRepository::CreateRoom(const std::string& name)
 		return ID_ALREADY_EXISTS;
 
 	std::shared_ptr<Room> room = std::make_shared<Room>();
-	room->name = name;
+	room->setName(name);
 
 	this->rooms[name] = room;
 

@@ -5,6 +5,11 @@
     iod_define_symbol(password)
 #endif
 
+#ifndef IOD_SYMBOL_get_event
+#define IOD_SYMBOL_get_event
+    iod_define_symbol(get_event)
+#endif
+
 #ifndef IOD_SYMBOL_id
 #define IOD_SYMBOL_id
     iod_define_symbol(id)
@@ -40,6 +45,11 @@
     iod_define_symbol(get_user)
 #endif
 
+#ifndef IOD_SYMBOL_update_event
+#define IOD_SYMBOL_update_event
+    iod_define_symbol(update_event)
+#endif
+
 #ifndef IOD_SYMBOL_hello
 #define IOD_SYMBOL_hello
     iod_define_symbol(hello)
@@ -65,6 +75,106 @@
     iod_define_symbol(update_user)
 #endif
 
+#ifndef IOD_SYMBOL_roomName
+#define IOD_SYMBOL_roomName
+    iod_define_symbol(roomName)
+#endif
+
+#ifndef IOD_SYMBOL_eventName
+#define IOD_SYMBOL_eventName
+    iod_define_symbol(eventName)
+#endif
+
+#ifndef IOD_SYMBOL_token
+#define IOD_SYMBOL_token
+    iod_define_symbol(token)
+#endif
+
+#ifndef IOD_SYMBOL_create_event
+#define IOD_SYMBOL_create_event
+    iod_define_symbol(create_event)
+#endif
+
+#ifndef IOD_SYMBOL_dateStarts
+#define IOD_SYMBOL_dateStarts
+    iod_define_symbol(dateStarts)
+#endif
+
+#ifndef IOD_SYMBOL_dateCreated
+#define IOD_SYMBOL_dateCreated
+    iod_define_symbol(dateCreated)
+#endif
+
+#ifndef IOD_SYMBOL_dateEnds
+#define IOD_SYMBOL_dateEnds
+    iod_define_symbol(dateEnds)
+#endif
+
+#ifndef IOD_SYMBOL_eventTaskName
+#define IOD_SYMBOL_eventTaskName
+    iod_define_symbol(eventTaskName)
+#endif
+
+#ifndef IOD_SYMBOL_get_eventTask
+#define IOD_SYMBOL_get_eventTask
+    iod_define_symbol(get_eventTask)
+#endif
+
+#ifndef IOD_SYMBOL_minUsers
+#define IOD_SYMBOL_minUsers
+    iod_define_symbol(minUsers)
+#endif
+
+#ifndef IOD_SYMBOL_status
+#define IOD_SYMBOL_status
+    iod_define_symbol(status)
+#endif
+
+#ifndef IOD_SYMBOL_maxUsers
+#define IOD_SYMBOL_maxUsers
+    iod_define_symbol(maxUsers)
+#endif
+
+#ifndef IOD_SYMBOL_delete_event
+#define IOD_SYMBOL_delete_event
+    iod_define_symbol(delete_event)
+#endif
+
+#ifndef IOD_SYMBOL_create_eventTask
+#define IOD_SYMBOL_create_eventTask
+    iod_define_symbol(create_eventTask)
+#endif
+
+#ifndef IOD_SYMBOL_complexity
+#define IOD_SYMBOL_complexity
+    iod_define_symbol(complexity)
+#endif
+
+#ifndef IOD_SYMBOL_description
+#define IOD_SYMBOL_description
+    iod_define_symbol(description)
+#endif
+
+#ifndef IOD_SYMBOL_state
+#define IOD_SYMBOL_state
+    iod_define_symbol(state)
+#endif
+
+#ifndef IOD_SYMBOL_delete_eventTask
+#define IOD_SYMBOL_delete_eventTask
+    iod_define_symbol(delete_eventTask)
+#endif
+
+#ifndef IOD_SYMBOL_extension
+#define IOD_SYMBOL_extension
+    iod_define_symbol(extension)
+#endif
+
+#ifndef IOD_SYMBOL_update_eventTask
+#define IOD_SYMBOL_update_eventTask
+    iod_define_symbol(update_eventTask)
+#endif
+
 #ifndef IOD_SYMBOL_create_room
 #define IOD_SYMBOL_create_room
     iod_define_symbol(create_room)
@@ -85,11 +195,6 @@
     iod_define_symbol(delete_room)
 #endif
 
-#ifndef IOD_SYMBOL_token
-#define IOD_SYMBOL_token
-    iod_define_symbol(token)
-#endif
-
 #ifndef IOD_SYMBOL_generate
 #define IOD_SYMBOL_generate
     iod_define_symbol(generate)
@@ -105,63 +210,13 @@
     iod_define_symbol(valid)
 #endif
 
-#ifndef IOD_SYMBOL_maxUsers
-#define IOD_SYMBOL_maxUsers
-    iod_define_symbol(maxUsers)
-#endif
-
-#ifndef IOD_SYMBOL_status
-#define IOD_SYMBOL_status
-    iod_define_symbol(status)
-#endif
-
 #ifndef IOD_SYMBOL_media
 #define IOD_SYMBOL_media
     iod_define_symbol(media)
 #endif
 
-#ifndef IOD_SYMBOL_extension
-#define IOD_SYMBOL_extension
-    iod_define_symbol(extension)
-#endif
-
-#ifndef IOD_SYMBOL_complexity
-#define IOD_SYMBOL_complexity
-    iod_define_symbol(complexity)
-#endif
-
-#ifndef IOD_SYMBOL_description
-#define IOD_SYMBOL_description
-    iod_define_symbol(description)
-#endif
-
-#ifndef IOD_SYMBOL_state
-#define IOD_SYMBOL_state
-    iod_define_symbol(state)
-#endif
-
-#ifndef IOD_SYMBOL_dateEnds
-#define IOD_SYMBOL_dateEnds
-    iod_define_symbol(dateEnds)
-#endif
-
-#ifndef IOD_SYMBOL_dateCreated
-#define IOD_SYMBOL_dateCreated
-    iod_define_symbol(dateCreated)
-#endif
-
 #ifndef IOD_SYMBOL_completition
 #define IOD_SYMBOL_completition
     iod_define_symbol(completition)
-#endif
-
-#ifndef IOD_SYMBOL_dateStarts
-#define IOD_SYMBOL_dateStarts
-    iod_define_symbol(dateStarts)
-#endif
-
-#ifndef IOD_SYMBOL_minUsers
-#define IOD_SYMBOL_minUsers
-    iod_define_symbol(minUsers)
 #endif
 

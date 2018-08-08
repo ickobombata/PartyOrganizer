@@ -11,14 +11,14 @@
 
 using namespace sl; // Silicon namespace
 using namespace s; // Symbols namespace
-
-typedef mysql_orm_factory<User> user_orm_factory;
-typedef mysql_orm_factory<Multimedia> multimedia_orm_factory;
-typedef mysql_orm_factory<Task> task_orm_factory;
-typedef mysql_orm_factory<Message> message_orm_factory;
-typedef mysql_orm_factory<Chat> chat_orm_factory;
-typedef mysql_orm_factory<Status> status_orm_factory;
-typedef mysql_orm_factory<Event> event_orm_factory;
+//
+//typedef mysql_orm_factory<User> user_orm_factory;
+//typedef mysql_orm_factory<Multimedia> multimedia_orm_factory;
+//typedef mysql_orm_factory<Task> task_orm_factory;
+//typedef mysql_orm_factory<Message> message_orm_factory;
+//typedef mysql_orm_factory<Chat> chat_orm_factory;
+//typedef mysql_orm_factory<Status> status_orm_factory;
+//typedef mysql_orm_factory<Event> event_orm_factory;
 
 
 int main()
@@ -34,18 +34,18 @@ int main()
 
 	logger->Info("Loading middlewares...");
 
-	auto middlewares = std::make_tuple(
-		mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
-		user_orm_factory("Users"),
-		multimedia_orm_factory("Multimedias"),
-		task_orm_factory("Tasks"),
-		message_orm_factory("Messages"),
-		chat_orm_factory("Chats"),
-		status_orm_factory("Statuses"),
-		event_orm_factory("Events")
-	);
+	//auto middlewares = std::make_tuple(
+	//	mysql_connection_factory("localhost", "kurendo", "kurendo", "party_organizer"),
+	//	user_orm_factory("Users"),
+	//	multimedia_orm_factory("Multimedias"),
+	//	task_orm_factory("Tasks"),
+	//	message_orm_factory("Messages"),
+	//	chat_orm_factory("Chats"),
+	//	status_orm_factory("Statuses"),
+	//	event_orm_factory("Events")
+	//);
 
 	logger->Info("Server started.");
 	// Serve hello_api via microhttpd using the json format:
-	sl::mhd_json_serve(apis, middlewares, 12345);
+	sl::mhd_json_serve(apis, 12345);
 }

@@ -17,10 +17,4 @@ public:
 
 private:
 	std::unordered_map<std::string, std::shared_ptr<User>> users;
-	std::unordered_map<std::string, Multimedia> multimedia;
-	std::unordered_map<std::string, Task> tasks;
-	std::unordered_map<std::string, Message> messages;
-	std::unordered_map<std::string, Chat> chats;
-	std::unordered_map<std::string, Status> statuses;
-	std::unordered_map<std::string, Event> events;
 };

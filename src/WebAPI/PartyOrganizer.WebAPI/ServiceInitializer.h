@@ -40,7 +40,7 @@ public:
 			// The hello world procedure.
 			GET / _hello = []() { return D(_message = "Hello world."); },
 
-			// example of the database data retrieval
+			//// example of the database data retrieval
 			GET / _get_user * get_parameters(_username = std::string())
 			= ServiceProvider::Instance().Resolve<DatabaseService>()->GetUser(),
 
@@ -52,6 +52,37 @@ public:
 
 			GET / _update_user * get_parameters(_username = std::string(), _password = std::string(), _alias = std::string())
 			= ServiceProvider::Instance().Resolve<DatabaseService>()->EditUser(),
+
+
+
+			GET / _get_event * get_parameters(_roomName = std::string(), _eventName = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->GetEvent(),
+
+			GET / _create_event * get_parameters(_roomName = std::string(), _eventName = std::string(), _dateStarts = std::string(), _dateEnds = std::string(), _dateCreated = std::string(), _minUsers = int(), _maxUsers = int())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->CreateEvent(),
+
+			GET / _delete_event * get_parameters(_roomName = std::string(), _eventName = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->DeleteEvent(),
+
+			GET / _update_event * get_parameters(_roomName = std::string(), _eventName = std::string(), _dateStarts = std::string(), _dateEnds = std::string(), _dateCreated = std::string(), _minUsers = int(), _maxUsers = int())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->EditEvent(),
+
+
+
+			GET / _get_eventTask * get_parameters(_eventName = std::string(), _eventTaskName = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->GetEventTask(),
+
+			GET / _create_eventTask * get_parameters(_eventName = std::string(), _eventTaskName = std::string(), _description = std::string(), _complexity = int(), _state = int())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->CreateEventTask(),
+
+			GET / _delete_eventTask * get_parameters(_eventName = std::string(), _eventTaskName = std::string())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->DeleteEventTask(),
+
+			GET / _update_eventTask * get_parameters(_eventName = std::string(), _eventTaskName = std::string(), _description = std::string(), _complexity = int(), _state = int())
+			= ServiceProvider::Instance().Resolve<DatabaseService>()->EditEventTask(),
+
+
+
 
 			GET / _create_room * get_parameters(_name = std::string())
 			= ServiceProvider::Instance().Resolve<DatabaseService>()->CreateRoom(),

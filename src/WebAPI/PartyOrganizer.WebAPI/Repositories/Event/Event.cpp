@@ -1,6 +1,6 @@
 #include "Event.h"
 
-Event::Event(std::string& name, std::string &dateStarts, std::string &dateEnds, std::string &dateCreated, int minUsers, int maxUsers)
+Event::Event(std::string name, std::string dateStarts, std::string dateEnds, std::string dateCreated, int minUsers, int maxUsers)
 {
 	setName(name);
 	setDateStarts(dateStarts);
@@ -8,6 +8,16 @@ Event::Event(std::string& name, std::string &dateStarts, std::string &dateEnds, 
 	setDateCreated(dateCreated);
 	setMinUsers(minUsers);
 	setMaxUsers(maxUsers);
+}
+
+Event::Event()
+{
+	setName("");
+	setDateStarts("");
+	setDateEnds("");
+	setDateCreated("");
+	setMinUsers(-1);
+	setMaxUsers(-1);
 }
 
 const std::string Event::getName() const
@@ -40,22 +50,22 @@ int Event::getMaxUsers() const
 	return this->maxUsers;
 }
 
-void Event::setName(std::string &name)
+void Event::setName(std::string name)
 {
 	this->name = name;
 }
 
-void Event::setDateStarts(std::string &dateStarts)
+void Event::setDateStarts(std::string dateStarts)
 {
 	this->dateStarts = dateStarts;
 }
 
-void Event::setDateEnds(std::string &dateEnds)
+void Event::setDateEnds(std::string dateEnds)
 {
 	this->dateEnds = dateEnds;
 }
 
-void Event::setDateCreated(std::string &dateCreated)
+void Event::setDateCreated(std::string dateCreated)
 {
 	//if (validateDate -> this will be remvoed when we introduce Date clsas or reuse some Date shit. not important for now)
 	this->dateCreated = dateCreated;
