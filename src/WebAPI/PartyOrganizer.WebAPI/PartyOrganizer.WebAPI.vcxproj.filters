@@ -14,14 +14,30 @@
     <ClCompile Include="Services\ServiceProvider.cpp">
       <Filter>Services</Filter>
     </ClCompile>
-    <ClCompile Include="Repositories\Room\RAMRoomRepository.cpp" />
-    <ClCompile Include="Repositories\User\RAMUserRepository.cpp" />
-    <ClCompile Include="Repositories\User\User.cpp" />
-    <ClCompile Include="Repositories\Room\Room.cpp" />
-    <ClCompile Include="Repositories\Event\Event.cpp" />
-    <ClCompile Include="Repositories\Event\RAMEventRepository.cpp" />
-    <ClCompile Include="Repositories\EventTask\EventTask.cpp" />
-    <ClCompile Include="Repositories\EventTask\RAMEventTaskRepository.cpp" />
+    <ClCompile Include="Repositories\User\RAMUserRepository.cpp">
+      <Filter>Repositories\User</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\User\User.cpp">
+      <Filter>Repositories\User</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\Room\RAMRoomRepository.cpp">
+      <Filter>Repositories\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\Room\Room.cpp">
+      <Filter>Repositories\Room</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\Event\RAMEventRepository.cpp">
+      <Filter>Repositories\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\Event\Event.cpp">
+      <Filter>Repositories\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\EventTask\EventTask.cpp">
+      <Filter>Repositories\EventTask</Filter>
+    </ClCompile>
+    <ClCompile Include="Repositories\EventTask\RAMEventTaskRepository.cpp">
+      <Filter>Repositories\EventTask</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="symbols.hh" />
@@ -50,19 +66,45 @@
     <ClInclude Include="Services\OrmDefinitions.h">
       <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="Repositories\Room\IRoomRepository.h" />
-    <ClInclude Include="Repositories\Room\RAMRoomRepository.h" />
-    <ClInclude Include="Repositories\User\IUserRepository.h" />
-    <ClInclude Include="Repositories\User\RAMUserRepository.h" />
-    <ClInclude Include="Repositories\User\UserRepository.h" />
-    <ClInclude Include="Repositories\User\User.h" />
-    <ClInclude Include="Repositories\Room\Room.h" />
-    <ClInclude Include="Repositories\Event\Event.h" />
-    <ClInclude Include="Repositories\Event\IEventRepository.h" />
-    <ClInclude Include="Repositories\Event\RAMEventRepository.h" />
-    <ClInclude Include="Repositories\EventTask\EventTask.h" />
-    <ClInclude Include="Repositories\EventTask\IEventTaskRepository.h" />
-    <ClInclude Include="Repositories\EventTask\RAMEventTaskRepository.h" />
+    <ClInclude Include="Repositories\User\User.h">
+      <Filter>Repositories\User</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\User\IUserRepository.h">
+      <Filter>Repositories\User</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\User\RAMUserRepository.h">
+      <Filter>Repositories\User</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\User\UserRepository.h">
+      <Filter>Repositories\User</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Room\Room.h">
+      <Filter>Repositories\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Room\RAMRoomRepository.h">
+      <Filter>Repositories\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Room\IRoomRepository.h">
+      <Filter>Repositories\Room</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Event\RAMEventRepository.h">
+      <Filter>Repositories\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Event\Event.h">
+      <Filter>Repositories\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\Event\IEventRepository.h">
+      <Filter>Repositories\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\EventTask\EventTask.h">
+      <Filter>Repositories\EventTask</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\EventTask\IEventTaskRepository.h">
+      <Filter>Repositories\EventTask</Filter>
+    </ClInclude>
+    <ClInclude Include="Repositories\EventTask\RAMEventTaskRepository.h">
+      <Filter>Repositories\EventTask</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Services">
@@ -73,6 +115,18 @@
     </Filter>
     <Filter Include="Repositories">
       <UniqueIdentifier>{6df0b9ce-0784-4800-b3ae-6d04b5107a57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Repositories\Event">
+      <UniqueIdentifier>{12c887c0-032a-49d6-b5f2-13aaab856fd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Repositories\EventTask">
+      <UniqueIdentifier>{e2392500-e917-4db7-86b4-ce4bb55bf817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Repositories\Room">
+      <UniqueIdentifier>{dfc2cf0b-5642-41b7-9531-c7e839d7c378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Repositories\User">
+      <UniqueIdentifier>{f212443f-7f90-4982-9704-8c987a83649c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
