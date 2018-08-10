@@ -6,4 +6,5 @@ build_script:
     
     sudo apt install -y libmicrohttpd-dev clang libboost-all-dev libmysqlclient-dev libssl-dev
 
-    clang++ -std=c++14 -ftemplate-depth=1024 ./src/WebAPI/PartyOrganizer.WebAPI/*.cpp ./src/WebAPI/PartyOrganizer.WebAPI/Repositories/*.cpp ./src/WebAPI/PartyOrganizer.WebAPI/Services/*.cpp -I ./src/WebAPI/PartyOrganizer.WebAPI/include -L ./src/WebAPI/PartyOrganizer.WebAPI/libs -lmicrohttpd -lmysqlclient -lcrypto -lpthread
+    cd ./src/WebAPI/PartyOrganizer.WebAPI
+    make
